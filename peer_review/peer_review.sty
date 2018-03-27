@@ -18,7 +18,7 @@
 \RequirePackage[backend = biber, defernumbers = true,
 			          labelnumber = true, sorting = ydnt,
 			          maxbibnames = 99, uniquename = false,
-			          isbn = false]{biblatex} % load biblatex and define setup
+			          isbn = false, citestyle = authoryear]{biblatex} % load biblatex and define setup
 \DeclareLanguageMapping{american}{american-apa} 
 \RequirePackage{etoolbox}
 \RequirePackage{fullpage}
@@ -62,24 +62,29 @@
 
 
 \NewDocumentCommand{\comm}{s m o}{%
+  % \small % add option to set comment size?
   \minipage[t]{0.025\textwidth}
     \IfBooleanTF{#1}%
       {\hskip 0.025\textwidth}%
       {\stepcounter{commentnum}\thecommentnum.}%
   \endminipage
   \hskip 0.025\textwidth
-  \minipage[t]{0.8\textwidth}
+  \minipage[t]{0.81\textwidth}
     #2%
   \endminipage
   \hskip 0.025\textwidth
-  \minipage[t]{0.125\textwidth}
-    \raggedleft
+  \minipage[t]{0.115\textwidth}
+    \raggedright
     \IfValueTF{#3}%
       {line #3}%
       {}%
   \endminipage
   \vskip 2ex
 }%
+
+\NewDocumentCommand{\subcomm}{m o}{%
+  \comm*{#1}[#2]
+}
 
 \NewDocumentEnvironment{sectioncomments}{o}{%
   \stepcounter{commentsection}
