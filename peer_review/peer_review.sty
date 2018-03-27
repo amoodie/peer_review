@@ -54,8 +54,8 @@
 \newcounter{commentnum}[commentsection]
 
 \renewcommand{\section}{%
-  \@startsection
-  {section}{1}{\z@}{0.5\baselineskip}%
+  \@startsection{section}{1}{\z@}
+  {0.5\baselineskip \@plus 2ex}%
   {0.1\baselineskip}%
   {\fontseries{b}\selectfont}%
 }
@@ -79,11 +79,16 @@
       {line #3}%
       {}%
   \endminipage
-  \vskip 2ex
+  \vskip 1ex
 }%
 
 \NewDocumentCommand{\subcomm}{m o}{%
   \comm*{#1}[#2]
+}
+
+\NewDocumentCommand{\rewrite}{m o}{%
+  \newcommand{\newpara}{\newline\hspace*{2em}}
+  \comm*{\footnotesize#1}[#2]
 }
 
 \NewDocumentEnvironment{sectioncomments}{o}{%
