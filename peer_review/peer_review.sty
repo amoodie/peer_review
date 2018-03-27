@@ -1,0 +1,98 @@
+% LaTeX package for formatting references within a CV
+% 
+% (c) Andrew J. Moodie
+% andrewjmoodie.com
+%
+%% This program can be redistributed and/or modified under the terms
+%% of the LaTeX Project Public License Distributed from CTAN archives
+%% in directory macros/latex/base/lppl.txt.
+% 
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{peer_review}
+  [2011/01/11 v0.01 LaTeX package for my own purpose]
+
+% required packages %
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[american]{babel} % load babel in american english
+\RequirePackage{csquotes} % for formatting
+\RequirePackage[backend = biber, defernumbers = true,
+			          labelnumber = true, sorting = ydnt,
+			          maxbibnames = 99, uniquename = false,
+			          isbn = false]{biblatex} % load biblatex and define setup
+\DeclareLanguageMapping{american}{american-apa} 
+\RequirePackage{etoolbox}
+\RequirePackage{fullpage}
+\RequirePackage{titlesec}
+\RequirePackage{tabularx}
+\RequirePackage{hyperref}
+
+% \usepackage{times}
+\RequirePackage{xparse}
+\RequirePackage{kvoptions}
+  \SetupKeyvalOptions{%
+    family=peer,
+    prefix=peer@,
+    }
+
+\DeclareStringOption[--]{labelitemi}[--]
+\DeclareDefaultOption*{\PassOptionsToClass{\CurrentOption}{article}}
+\ProcessKeyvalOptions*
+
+\renewcommand{\labelitemi}{\peer@labelitemi} % sets a new list delimiter - a star
+
+% set up hyperref printing
+\hypersetup{colorlinks = true, linkcolor = black, anchorcolor = black,
+            citecolor = black, urlcolor=blue, bookmarksopen = true,
+            bookmarksnumbered = true, bookmarksopenlevel = 2, pdfstartview = {FitH},
+            pdfborder = {0 0 0}
+  }
+
+% some printing params
+\setlength{\parindent}{0pt}
+
+\newcounter{commentsection}
+\newcounter{commentnum}[commentsection]
+
+\renewcommand{\section}{%
+  \@startsection
+  {section}{1}{\z@}{0.5\baselineskip}%
+  {0.1\baselineskip}%
+  {\fontseries{b}\selectfont}%
+}
+
+
+\NewDocumentCommand{\comm}{s m o}{%
+  \minipage[t]{0.025\textwidth}
+    \IfBooleanTF{#1}%
+      {\hskip 0.025\textwidth}%
+      {\stepcounter{commentnum}\thecommentnum.}%
+  \endminipage
+  \hskip 0.025\textwidth
+  \minipage[t]{0.8\textwidth}
+    #2%
+  \endminipage
+  \hskip 0.025\textwidth
+  \minipage[t]{0.125\textwidth}
+    \raggedleft
+    \IfValueTF{#3}%
+      {line #3}%
+      {}%
+  \endminipage
+  \vskip 2ex
+}%
+
+\NewDocumentEnvironment{sectioncomments}{o}{%
+  \stepcounter{commentsection}
+  \IfValueTF{#1}%
+    {\section*{Comments about ``#1''}}%
+    {\section{Unsorted comments}}
+  \vskip 0.5ex
+}{%
+
+}
+
+
+
+\endinput
+%%
+%% End of file `peer_review.sty'.
