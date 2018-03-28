@@ -60,16 +60,17 @@
   {\fontseries{b}\selectfont}%
 }
 
+\renewcommand{\theequation}{R\arabic{equation}}
+
 
 \NewDocumentCommand{\comm}{s m o}{%
-  % \small % add option to set comment size?
-  \minipage[t]{0.025\textwidth}
+  \minipage[t]{0.015\textwidth}
     \IfBooleanTF{#1}%
-      {\hskip 0.025\textwidth}%
+      {\hskip 0.015\textwidth}%
       {\stepcounter{commentnum}\thecommentnum.}%
   \endminipage
   \hskip 0.025\textwidth
-  \minipage[t]{0.81\textwidth}
+  \minipage[t]{0.82\textwidth}
     #2%
   \endminipage
   \hskip 0.025\textwidth
@@ -88,7 +89,8 @@
 
 \NewDocumentCommand{\rewrite}{m o}{%
   \newcommand{\newpara}{\newline\hspace*{2em}}
-  \comm*{\footnotesize#1}[#2]
+  \newcommand{\forceindent}{\hspace*{2em}}
+  \comm*{\footnotesize#1}[#2]% could provide a token to forceindent first para
 }
 
 \NewDocumentEnvironment{sectioncomments}{o}{%
