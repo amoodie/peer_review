@@ -1,0 +1,77 @@
+\documentclass{article}
+
+
+\usepackage{peer_review}
+\title{A review of: \\ Manuscript title that I am reviewing goes here}
+% \title{Co-author review of: \\ Manuscript title of my co-author's paper goes here}
+\author{Review by: Author O. Thereview}
+
+
+
+\begin{document}
+\maketitle
+
+
+\section{Overall comments}
+This is just a regular section. 
+We could use this to put overall comments about the manuscript that we want the author to read before getting into the details.
+
+\begin{sectioncomments}[A Section Title]
+    \comm{This is a comment using \texttt{$\backslash$comm} that has a line number given as an optional parameter after the main comment.
+    Comments are automatically numbered at the left.}[10]
+    \comm{This is a comment using \texttt{$\backslash$comm} without a given line number and come more blind text. 
+    Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. 
+    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.}
+    \comm{This is also a comment using \texttt{$\backslash$comm}, but below is some generic sub-comment where you want to add an additional note. Maybe it's another suggestion that comments on the same sentence, but about a different idea.}[71]
+        \subcomm{This is a \texttt{$\backslash$subcomm}. 
+        Note that subcomm does not change the font size, and also supports an optional line number field. This environment could be as long as needed.}[88]
+\end{sectioncomments}
+
+\begin{sectioncomments}[Another Section Title]
+    \comm{Sometimes you just want to suggest a rewrite of a small section of the manuscript instead of line by line edits you can use the \texttt{$\backslash$rewrite} command. 
+    Note that \texttt{$\backslash$rewrite} will only work inside of \texttt{$\backslash$comm}.
+    For example, say: I have rewritten the last two paragraphs as follows:}[92]
+        \rewrite{\forceindent I am now inside a \texttt{$\backslash$rewrite}. Notice that this shrinks the font size! 
+        Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. 
+        Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. 
+        A small river named Duden flows by their place and supplies it with the necessary regelialia. 
+        It is a paradisematic country, in which roasted parts of sentences fly into your mouth. 
+        Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life.
+        One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar. 
+        \newpara The Big Oxmox advised her not to do so, because there were thousands of bad Commas, wild Question Marks and devious Semikoli, but the Little Blind Text didn’t listen. 
+        She packed her seven versalia, put her initial into the belt and made herself on the way. 
+        When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.}
+    \comm{note that in the above \texttt{$\backslash$rewrite} example, you must use \texttt{$\backslash$forceindent} and \texttt{$\backslash$newpara} to get an indent at the first line and break to a new paragraph with indent, respectively. 
+    \texttt{$\backslash$rewrite} also supports an optional line number at the end of the command.}
+\end{sectioncomments}
+
+
+\begin{sectioncomments}[Whoa Another Section Title]
+    \comm{We can use quotes to show what exactly we are commenting on, for example: ``This sentence poorly written it is.'' should be ``This sentence is poorly written''.}
+    \comm{You can use equations in the text of a \texttt{$\backslash$comm}, just like you would in any other environment: 
+    \begin{equation}\label{RC1}
+        E = mc^2
+    \end{equation}
+    Note that equations will be numbered and prefixed with an ``R'' denoting a \textbf{r}eview equation, distinct from the equations in the document you are reviewing.}
+\end{sectioncomments}
+
+
+\begin{sectioncomments}*[This will be printed exactly as written]
+    \comm{In the above section head, we specified an asterisk before the optional field. This causes the optional text given to be printed exactly as written instead of prefixed with ``Comments about'' and put in quotation marks.}[234]
+    \comm{Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. 
+    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. 
+    A small river named Duden flows by their place and supplies it with the necessary regelialia. 
+    It is a paradisematic country, in which roasted parts of sentences fly into your mouth.}[494]
+\end{sectioncomments}
+
+\begin{sectioncomments}
+    \comm{In the above section head, no arguments were provided, so we get a default printing of ``Comments''. 
+    Note that specifying the asterisk with no optional argument also produces the default ``Comments''.}[365]
+    \comm{Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. 
+    Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. 
+    A small river named Duden flows by their place and supplies it with the necessary regelialia. 
+    It is a paradisematic country, in which roasted parts of sentences fly into your mouth.}[543]
+\end{sectioncomments}
+
+
+\end{document}

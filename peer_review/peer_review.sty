@@ -1,4 +1,4 @@
-% LaTeX package for formatting references within a CV
+% LaTeX package for formatting peer review document
 % 
 % (c) Andrew J. Moodie
 % andrewjmoodie.com
@@ -9,24 +9,14 @@
 % 
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
 \ProvidesPackage{peer_review}
-  [2011/01/11 v0.01 LaTeX package for my own purpose]
+  [2018/04/10 v1.0 LaTeX package for formatting a peer review document]
 
-% required packages %
-\RequirePackage[utf8]{inputenc}
-\RequirePackage[american]{babel} % load babel in american english
-\RequirePackage{csquotes} % for formatting
-\RequirePackage[backend = biber, defernumbers = true,
-			          labelnumber = true, sorting = ydnt,
-			          maxbibnames = 99, uniquename = false,
-			          isbn = false, citestyle = authoryear]{biblatex} % load biblatex and define setup
-\DeclareLanguageMapping{american}{american-apa} 
+% required packages
 \RequirePackage{etoolbox}
 \RequirePackage{fullpage}
 \RequirePackage{titlesec}
 \RequirePackage{tabularx}
 \RequirePackage{hyperref}
-
-% \usepackage{times}
 \RequirePackage{xparse}
 \RequirePackage{kvoptions}
   \SetupKeyvalOptions{%
@@ -48,11 +38,13 @@
   }
 
 % some printing params
-\setlength{\parindent}{0pt}
+\setlength{\parindent}{0pt}         % no indents
+\setcounter{secnumdepth}{0}         % prevents automatic numbering for sections
 
 \newcounter{commentsection}
 \newcounter{commentnum}[commentsection]
 
+% section printing
 \renewcommand{\section}{%
   \@startsection{section}{1}{\z@}
   {0.5\baselineskip \@plus 2ex}%
@@ -60,9 +52,10 @@
   {\fontseries{b}\selectfont}%
 }
 
+% formatting for equations within the document
 \renewcommand{\theequation}{R\arabic{equation}}
 
-
+% main \comm command that \subcomm and \rewrite use
 \NewDocumentCommand{\comm}{s m o}{%
   \minipage[t]{0.015\textwidth}
     \IfBooleanTF{#1}%
@@ -83,21 +76,31 @@
   \vskip 1ex
 }%
 
+% subcomm forces to not number
 \NewDocumentCommand{\subcomm}{m o}{%
   \comm*{#1}[#2]
 }
 
+% rewrite shrinks and does not number
 \NewDocumentCommand{\rewrite}{m o}{%
   \newcommand{\newpara}{\newline\hspace*{2em}}
   \newcommand{\forceindent}{\hspace*{2em}}
   \comm*{\footnotesize#1}[#2]% could provide a token to forceindent first para
 }
 
-\NewDocumentEnvironment{sectioncomments}{o}{%
+% main environment 
+% optional star argument (first) and then optional section head (second)
+\NewDocumentEnvironment{sectioncomments}{s o}{%
   \stepcounter{commentsection}
-  \IfValueTF{#1}%
-    {\section*{Comments about ``#1''}}%
-    {\section{Unsorted comments}}
+  \IfBooleanTF{#1}%
+    {\IfValueTF{#2}%
+      {\section{#2}}%
+      {\section{Comments}}%
+      }%
+    {\IfValueTF{#2}%
+      {\section*{Comments about ``#2''}}%
+      {\section{Comments}}
+      }
   \vskip 0.5ex
 }{%
 
