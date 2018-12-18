@@ -100,7 +100,9 @@ The optional argument that can be passed to `\comm` is the line number that your
 For example:
 
 ```
-\comm{This is a comment using \texttt{$\backslash$comm} that has a line number given as an optional parameter after the main comment.
+\comm{This is a comment using \texttt{$\backslash$comm} that has a line number given 
+      as an optional parameter after the main comment. 
+      Comments are automtically numbered at the left}[10]
 ```
 
 is typeset as:
@@ -115,9 +117,12 @@ A `subcomm` is not numbered, but accepts an optional line number as a second arg
 For example: 
 
 ```
-\comm{This is also a comment using \texttt{$\backslash$comm}, but below is some generic sub-comment where you want to add an additional note. Maybe it's another suggestion that comments on the same sentence, but about a different idea.}[71]
+\comm{This is also a comment using \texttt{$\backslash$comm}, but below is some generic
+      sub-comment where you want to add an additional note. Maybe it's another 
+      suggestion that comments on the same sentence, but about a different idea.}[71]
     \subcomm{This is a \texttt{$\backslash$subcomm}. 
-    Note that subcomm does not change the font size, and also supports an optional line number field. This environment could be as long as needed.}[88]
+    Note that subcomm does not change the font size, and also supports an 
+    optional line number field. This environment could be as long as needed.}[88]
 ```
 
 is typeset as:
