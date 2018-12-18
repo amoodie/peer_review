@@ -160,10 +160,6 @@ For example, say: I have rewritten the last two paragraphs as follows:}[92]
     When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.}
 ```
 
-
-
-
-
 is typeset as:
 
 ![rewrite](./private/rewrite1.png "example of rewrite")
