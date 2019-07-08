@@ -43,8 +43,8 @@ One example, with pseudocode is below.
 
 For a linux user with the default location of the `texlive` install, the following yields a proper symbolic link:
 
-    sudo mkdir <local_path_to_textree>/tex/latex/compact_proposal
-    sudo ln -s <local_path_above_this_repo>/compact_proposal/compact_proposal/compact_proposal.cls <local_path_to_textree>/tex/latex/compact_proposal/compact_proposal.cls
+    sudo mkdir <local_path_to_textree>/tex/latex/peer_review
+    sudo ln -s <local_path_above_this_repo>/peer_review/peer_review/peer_review.sty <local_path_to_textree>/tex/latex/peer_review/peer_review.sty
 
 Note that the `tex`-tree is everything below `/usr/share/texlive/texmf-dist/`.
 

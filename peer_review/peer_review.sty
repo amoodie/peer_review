@@ -43,6 +43,8 @@
 
 \newcounter{commentsection}
 \newcounter{commentnum}[commentsection]
+\renewcommand{\thecommentnum}{\thecommentsection.\arabic{commentnum}}
+
 
 % section printing
 \renewcommand{\section}{%
@@ -56,14 +58,14 @@
 \renewcommand{\theequation}{R\arabic{equation}}
 
 % main \comm command that \subcomm and \rewrite use
-\NewDocumentCommand{\privcomm}{s m o}{%
-  \minipage[t]{0.015\textwidth}
+\NewDocumentEnvironment{privcomm}{s m o}{%
+  \minipage[t]{0.025\textwidth}
     \IfBooleanTF{#1}%
       {\hskip 0.015\textwidth}%
-      {\stepcounter{commentnum}\thecommentnum.}%
+      {\thecommentnum}%
   \endminipage
   \hskip 0.025\textwidth
-  \minipage[t]{0.82\textwidth}
+  \minipage[t]{0.81\textwidth}
     #2%
   \endminipage
   \hskip 0.025\textwidth
@@ -76,7 +78,11 @@
   \vskip 1ex
 }%
 
-\NewDocumentCommand{\comm}{m o}{%
+% \NewDocumentCommand{\comm}{m o}{%
+%   \privcomm{#1}[#2]
+% }
+\NewDocumentEnvironment{comm}{m o}{%
+  \refstepcounter{commentnum}
   \privcomm{#1}[#2]
 }
 
@@ -102,7 +108,8 @@
       {\section{Comments}}%
       }%
     {\IfValueTF{#2}%
-      {\section*{Comments about ``#2''}}%
+      {\section*{Comments about ``#2''}
+      \pdfbookmark[1]{Comments about ``#2''}{#2}}%
       {\section{Comments}}
       }
   \vskip 0.5ex
